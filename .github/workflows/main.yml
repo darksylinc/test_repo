@@ -3,7 +3,7 @@ name: CI
 # Controls when the action will run.
 on:
   push:
-    branches:  'master'
+    branches:  'main'
 
   # Run for all pull requests
   pull_request:
