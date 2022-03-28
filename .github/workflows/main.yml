@@ -20,3 +20,7 @@ jobs:
       - name: Run Linux
         working-directory: ./
         run: ./.github/workflows/test_script.sh
+      - name: ABI Checker Report Generation
+        working-directory: ./
+        if: ${{ github.base_ref != 'main' }}
+        run: ./.github/workflows/test_script.sh $GITHUB_BASE_REF
