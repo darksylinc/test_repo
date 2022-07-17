@@ -18,6 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Clang Format Check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ./.github/workflows/
         run: ./run_clang_format.sh $GITHUB_BASE_REF
 
