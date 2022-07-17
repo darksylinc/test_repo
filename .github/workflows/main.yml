@@ -12,15 +12,22 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  BuildLinux:
-    runs-on: ubuntu-latest
-
-    steps:
+  ClangFormat:
+      runs-on: ubuntu-latest
       - uses: actions/checkout@v2
-      - name: Run Linux
-        working-directory: ./
-        run: ./.github/workflows/test_script.sh
-      - name: ABI Checker Report Generation
-        working-directory: ./
-        if: ${{ (github.ref != 'refs/heads/main' && github.event_name == 'push') || (github.event_name == 'pull_request' && github.base_ref != 'refs/heads/main') }}
-        run: ./.github/workflows/test_script2.sh $GITHUB_BASE_REF
+        - name: Clang Format Check
+          working-directory: ./.github/workflows/
+          run: run_clang_format.sh $GITHUB_BASE_REF ${{github.event.pull_request.base.sha}}
+
+  #BuildLinux:
+  #  runs-on: ubuntu-latest
+
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - name: Run Linux
+  #      working-directory: ./
+  #      run: ./.github/workflows/test_script.sh
+  #    - name: ABI Checker Report Generation
+  #      working-directory: ./
+  #      if: ${{ (github.ref != 'refs/heads/main' && github.event_name == 'push') || (github.event_name == 'pull_request' && github.base_ref != 'refs/heads/main') }}
+  #      run: ./.github/workflows/test_script2.sh $GITHUB_BASE_REF
