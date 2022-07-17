@@ -20,12 +20,12 @@ if len(sys.argv) != 2:
 
 g_folders = [
     'src',
-    #'OgreMain',
-    #'RenderSystems/Direct3D11',
-    #'RenderSystems/GL3Plus',
-    #'RenderSystems/Metal',
-    #'RenderSystems/NULL',
-    #'Samples/2.0',
+    # 'OgreMain',
+    # 'RenderSystems/Direct3D11',
+    # 'RenderSystems/GL3Plus',
+    # 'RenderSystems/Metal',
+    # 'RenderSystems/NULL',
+    # 'Samples/2.0',
 ]
 
 g_exceptions = {'stb_image_write.h', 'stb_image.h',
@@ -117,7 +117,7 @@ pathsToParse = collectCppFilesForFormatting()
 baseChangeList = runClangMultithreaded(pathsToParse)
 
 bHasErrors = False
-for fullpath, prNumLines in prChangeList:
+for fullpath, prNumLines in prChangeList.items():
     try:
         baseNumLines = baseChangeList[fullpath]
         if prNumLines > baseNumLines:
@@ -131,4 +131,7 @@ for fullpath, prNumLines in prChangeList:
             bHasErrors = True
 
 if bHasErrors:
+    print("Clang Format Script Failure")
     exit(1)
+else:
+    print("Clang Format Script Success!")
