@@ -117,7 +117,7 @@ pathsToParse = collectCppFilesForFormatting()
 baseChangeList = runClangMultithreaded(pathsToParse)
 
 bHasErrors = False
-for fullpath, prNumLines in prChangeList:
+for fullpath, prNumLines in prChangeList.items():
     try:
         baseNumLines = baseChangeList[fullpath]
         if prNumLines > baseNumLines:
