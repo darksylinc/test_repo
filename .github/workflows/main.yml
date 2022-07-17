@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Clang Format Check
         working-directory: ./.github/workflows/
-        run: run_clang_format.sh $GITHUB_BASE_REF ${{github.event.pull_request.base.sha}}
+        run: ./run_clang_format.sh $GITHUB_BASE_REF ${{github.event.pull_request.base.sha}}
 
   #BuildLinux:
   #  runs-on: ubuntu-latest
