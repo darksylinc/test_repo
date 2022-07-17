@@ -8,7 +8,7 @@ on:
   # Run for all pull requests
   pull_request:
     branches: '*'
-    types: [opened]
+    types: [opened, synchronize, reopened]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,10 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Clang Format Check
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #env:
+        #  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ./.github/workflows/
-        run: ./run_clang_format.sh ${{ github.event_name }} ${{ github.event.pull_request.base.sha }}
+        # run: ./run_clang_format.sh ${{ github.event_name }} ${{ github.event.pull_request.base.sha }}
+        run: |
+         echo ${{ github.event.pull_request.base.ref }}
+         echo ${{ github.base_ref }}
 
   #BuildLinux:
   #  runs-on: ubuntu-latest
@@ -33,5 +36,5 @@ jobs:
   #      run: ./.github/workflows/test_script.sh
   #    - name: ABI Checker Report Generation
   #      working-directory: ./
-  #      if: ${{ (github.ref != 'refs/heads/main' && github.event_name == 'push') || (github.event_name == 'pull_request' && github.base_ref != 'refs/heads/main') }}
+  #      if: ${{ (github.ref != 'refs/heads/main' && github.event_name == 'push') || (github.event_name == 'pull_request' && github.event.pull_request.base.ref != 'main') }}
   #      run: ./.github/workflows/test_script2.sh $GITHUB_BASE_REF
