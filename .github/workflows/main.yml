@@ -25,6 +25,8 @@ jobs:
         run: |
          echo ${{ github.event.pull_request.base.ref }}
          echo ${{ github.base_ref }}
+         echo ${{ github.ref }}
+         echo ${{ github.event_name }}
 
   #BuildLinux:
   #  runs-on: ubuntu-latest
