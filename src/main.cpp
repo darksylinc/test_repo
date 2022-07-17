@@ -6,7 +6,7 @@ namespace Test
 	public:
 		int test;
 		int test3;
-	int badVariable;
+	int badVariable2;
 	};
 }  // namespace Test
 
