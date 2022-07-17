@@ -5,7 +5,7 @@ namespace Test
 	{
 	public:
 		int test;
-		int test2;
+		int test3;
 	};
 }  // namespace Test
 
