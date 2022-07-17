@@ -20,6 +20,12 @@ if len(sys.argv) != 2:
 
 g_folders = [
     'src',
+    #'OgreMain',
+    #'RenderSystems/Direct3D11',
+    #'RenderSystems/GL3Plus',
+    #'RenderSystems/Metal',
+    #'RenderSystems/NULL',
+    #'Samples/2.0',
 ]
 
 g_exceptions = {'stb_image_write.h', 'stb_image.h',
@@ -105,7 +111,7 @@ pathsToParse = collectCppFilesForFormatting()
 prChangeList = runClangMultithreaded(pathsToParse)
 
 # Change to base
-process = subprocess.Popen(['git', 'checkout', 'asd'])
+process = subprocess.Popen(['git', 'checkout', sys.argv[1]])
 
 pathsToParse = collectCppFilesForFormatting()
 baseChangeList = runClangMultithreaded(pathsToParse)
