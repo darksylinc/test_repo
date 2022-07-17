@@ -13,11 +13,13 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   ClangFormat:
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+
+    steps:
       - uses: actions/checkout@v2
-        - name: Clang Format Check
-          working-directory: ./.github/workflows/
-          run: run_clang_format.sh $GITHUB_BASE_REF ${{github.event.pull_request.base.sha}}
+      - name: Clang Format Check
+        working-directory: ./.github/workflows/
+        run: run_clang_format.sh $GITHUB_BASE_REF ${{github.event.pull_request.base.sha}}
 
   #BuildLinux:
   #  runs-on: ubuntu-latest
