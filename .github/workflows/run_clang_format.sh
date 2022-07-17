@@ -1,5 +1,7 @@
 #!/bin/bash
 
+hashCommit=$2
+
 echo "--- Fetching commits to base PR ---"
 prCommits=`gh pr view $prId --json commits | jq '.commits | length'`
 fetchDepthToPrBase=`expr $prCommits + 2`
